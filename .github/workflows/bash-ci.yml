@@ -1,0 +1,25 @@
+
+name: Bash Script CI
+
+on:
+  push:
+    paths:
+      - '**.sh'
+
+jobs:
+  bash-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Check Bash scripts
+        run: |
+          find . -type f -name "*.sh" -print0 | xargs -0 -r shellcheck
+
