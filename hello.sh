@@ -7,5 +7,3 @@ then
 else
     echo "need name as param"
 fi
-
-
